@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Task</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            font-size: 25px;
+        }
+
+        th {
+            background-color: #E6E6E6;
+        }
+
+        td,
+        th {
+            border: 2px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .active {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="calendar"></div>
+
+    <script>
+        function createCalendar(year, month) {
+            const calendar = document.querySelector("#calendar");
+            const mon = month - 1;
+            const d = new Date(year, mon);
+            let tab = '<table id="table"><tr><th>пн</th><th>вт</th><th>ср</th><th>чт</th><th>пт</th><th>сб</th><th>вс</th></tr><tr>';
+
+            for (let i = 0; i < Day(d); i++) {
+                tab += '<td></td>';
+            }
+
+            while (d.getMonth() == mon) {
+                tab += '<td class="day">' + d.getDate() + '</td>';
+
+                if (Day(d) % 7 == 6) {
+                    tab += '</tr><tr>';
+                }
+
+                d.setDate(d.getDate() + 1);
+            }
+
+            if (Day(d) != 0) {
+                for (let i = Day(d); i < 7; i++) {
+                    tab += '<td></td>';
+                }
+            }
+            tab += '</tr></table>';
+            calendar.innerHTML = tab;
+        }
+
+        function Day(date) {
+            let day = date.getDay();
+            if (day == 0) {
+                day = 7;
+            }
+            return day - 1;
+        }
+        createCalendar(2018, 11);
+
+        const click = document.querySelector('#table');
+        click.addEventListener('click', function(e){
+            if(e.target.className === 'day'){
+                e.target.classList.toggle('active');
+            }
+        });
+    </script>
+
+</body>
+
+</html>
