@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Task</title>
+</head>
+
+<body>
+    <script>
+        function Clock() {
+            this.date = new Date();
+        }
+
+        Clock.prototype.start = function () {
+            setInterval(function () {
+                this.date = new Date();
+            }.bind(this), 1000);
+        }
+
+        Clock.prototype.getTime = function () {
+            return this.date.toLocaleTimeString();
+        }
+
+        const myClock = new Clock();
+
+        myClock.start();
+        console.log(myClock.getTime());
+
+        setTimeout(function () {
+            console.log(myClock.getTime());
+        }, 5000);
+        
+        function AlarmClock() {
+            Clock.call(this);
+            this.alatmTime = '';
+        }
+
+        AlarmClock.prototype = Object.create(Clock.prototype);
+        AlarmClock.prototype.setAlarmTime = function(time) {
+            this.alatmTime = time;
+        }
+
+        AlarmClock.prototype.start = function () {
+            setInterval(function () {
+                this.date = new Date();
+                if(this.alatmTime === this.date.toLocaleTimeString()) {
+                    alert('Alarm!!!!');
+                }
+            }.bind(this), 1000);
+        }
+
+        const myAlarmClock = new AlarmClock();
+        myAlarmClock.setAlarmTime('11:31:50');
+        myAlarmClock.start();
+    </script>
+
+</body>
+
+</html>
