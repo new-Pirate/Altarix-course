@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Task</title>
+</head>
+
+<body>
+    <script>
+        // task 1
+
+        const user1 = {
+            name: "Mikasa",
+            surname: 'Ackerman',
+            age: 19,
+        };
+        const user2 = {
+            name: "Armin",
+            surname: 'Arlert',
+            age: 19
+        };
+        const user3 = {
+            name: "Eren",
+            surname: 'Yeager',
+            age: 19
+        };
+
+        function showUsersName(name) {
+            return this.name;
+        }
+
+        function showUsersSurname(surname) {
+            return this.surname;
+        }
+
+        function showUsersAge(age) {
+            return this.age;
+        }
+
+        function bind(func, context) {
+            return function () {
+                console.log(func.call(context, 'name', 'surname', 'age'));
+            }
+        }
+
+        const qwe = bind(showUsersSurname, user3);
+        qwe();
+
+        // task 2
+
+        // function f(x) {
+        //     return x;
+        // }
+
+        // function parseIntWithCashe(f) {
+        //     const cache = {};
+        //     return function (x) {
+        //         if (!(x in cache)) {
+        //             cache[x] = f.call(this, parseInt(x, 16));
+        //         }
+        //         return cache[x];
+        //     };
+        // }
+
+        // f = parseIntWithCashe(f);
+
+        // const a = f("0xF");
+        // const b = f(" F");
+        // console.log(a == b);
+
+        // const c = f(2);
+        // console.log(a == c);
+
+        // task 3
+
+        // function getTotalSum(...numbers) {
+        //     return numbers.reduce(function (sum, next) { 
+        //         return sum + next;
+        //     });
+        // }
+        // console.log(getTotalSum(1, 2, 3, 5, 2)); 
+    </script>
+
+</body>
+
+</html>
