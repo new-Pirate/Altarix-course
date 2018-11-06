@@ -92,14 +92,14 @@
                     return response.json();
                 })
                 .then(function (user) {
-                    makeGETResult(user.items);
+                    makeResultHTML(user.items);
                 })
                 .catch(function (error) {
                     console.log('ERROR!', error);
                 })
         }
 
-        function makeGETResult(user) {
+        function makeResultHTML(user) {
             user = user.slice(0, 5);
             if (user.length > 0) {
                 const usersList = user.map(function (userInfo) {
@@ -117,10 +117,8 @@
         const buttonSearch = document.querySelector('.button__search');
         buttonSearch.onclick = function () {
             const inputSearch = document.querySelector('.input__search').value;
-            loadGitHubUsers(inputSeasrch);
+            loadGitHubUsers(inputSearch);
         }
-
-        loadGitHubUsers('Alex');
     </script>
 
 </body>
