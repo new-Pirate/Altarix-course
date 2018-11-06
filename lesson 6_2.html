@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Task</title>
+    <style>
+        .container {
+            width: 600px;
+            margin: 0 auto;
+            background-color: #9A9A9A;
+        }
+
+        .search__field {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 50px;
+            padding-top: 35px;
+        }
+
+        .input__search {
+            width: 200px;
+            background-color: #191919;
+            border-radius: 5px;
+            padding: 10px;
+            border: 0;
+            font-size: 13px;
+            color: #65B400;
+            box-shadow: 0 0 0 1px #65B400;
+            outline: none;
+        }
+            
+
+        .button__search {
+            width: 100px;
+            height: 40px;
+            background-color: #191919;
+            border: 0;
+            border-radius: 5px;
+            color: #65B400;
+            font-size: 15px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        li {
+            display: flex;
+            margin-bottom: 30px;
+            border: 1px solid black;
+            width: 500px;
+        }
+
+        img {
+            height: 200px;
+            margin-right: 40px;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin-bottom: 50px;;
+        }
+
+        p {
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="search__field">
+            <input class="input__search" type="text" placeholder="Введите пользователя">
+            <button class="button__search">Искать</button>
+        </div>
+        <ul class="results-search"></ul>
+    </div>
+
+    <script>
+        function loadGitHubUsers(user) {
+            fetch('https://api.github.com/search/users?q=' + user)
+                .then(function (response) {
+                    if (response.status !== 200) {
+                        return Promise.reject(new Error(response.statusText));
+                    }
+                    return Promise.resolve(response);
+                })
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (user) {
+                    makeGETResult(user.items);
+                })
+                .catch(function (error) {
+                    console.log('ERROR!', error);
+                })
+        }
+
+        function makeGETResult(user) {
+            user = user.slice(0, 5);
+            if (user.length > 0) {
+                const usersList = user.map(function (userInfo) {
+                    const userLogin = userInfo.login;
+                    const userId = userInfo.id;
+                    const userAvatar = userInfo.avatar_url;
+                    return `<li><img src='${userAvatar}' alt='${userLogin}'><div><h2>${userLogin}</h3><p>id: ${userId}</p></div></li>`
+                }).join('');
+                document.querySelector('.results-search').innerHTML = usersList;
+            } else {
+                document.querySelector('.results-search').innerHTML = 'Нет результатов';
+            }
+        }
+
+        const buttonSearch = document.querySelector('.button__search');
+        buttonSearch.onclick = function () {
+            const inputSearch = document.querySelector('.input__search').value;
+            loadGitHubUsers(inputSeasrch);
+        }
+
+        loadGitHubUsers('Alex');
+    </script>
+
+</body>
+
+</html>
