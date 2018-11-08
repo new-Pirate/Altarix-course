@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Task</title>
+    <style></style>
+</head>
+
+<body>
+    <script>
+        const user = {
+            name: 'Петр',
+            surname: 'Петров',
+            age: '20 лет'
+        }
+
+        const { name = 'Аноним', surname = 'Анонимович', age = '? лет' } = user;
+
+        console.log(name);
+        console.log(surname);
+        console.log(age);
+    </script>
+</body>
+
+</html>
