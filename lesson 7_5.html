@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Task</title>
+    <style></style>
+</head>
+
+<body>
+    <script>
+        class User {
+            constructor(age, occupation) {
+                this.age = age;
+                this.occupation = occupation;
+                this.activity();
+            }
+
+            changeAge() {
+                this.age++;
+                this.activityReset();
+                this.activity();
+            }
+
+            activity() {
+                if (this.age < 6) {
+                    this.activiti = 'Малец';
+                } else if (this.age >= 6 && this.age < 18) {
+                    this.activiti = 'Школьник';
+                } else if (this.age >= 18 && this.age < 25) {
+                    this.activiti = 'Студент';
+                } else if (this.age >= 25 && this.age < 63) {
+                    this.activiti = 'Работяга';
+                } else if (this.age >= 63 && this.sex === 'female') {
+                    this.activiti = 'Старушка';
+                } else if (this.age >= 65 && this.sex === 'male') {
+                    this.activiti = 'Старик';
+                }
+            }
+
+            activityReset() {
+                    if (this.age >= 6 && this.age < 18 && this.activiti === 'Малец') {
+                        this.activiti = null;
+                    } else if (this.age >= 18 && this.age < 25 && this.activiti === 'Школьник') {
+                        this.activiti = null;
+                    } else if (this.age >= 25 && this.age < 63 && this.activiti === 'Студент') {
+                        this.activiti = null;
+                    } else if (this.age >= 63 && this.sex === 'female' && this.activiti === 'Бабушка') {
+                        this.activiti = null;
+                    } else if (this.age >= 65 && this.sex === 'male' && this.activiti === 'Дедушка') {
+                        this.activiti = null;
+                    }
+                }
+        }
+
+        class Male extends User {
+            get sex() {
+                return 'male';
+            }
+        }
+
+        class Female extends User {
+            get sex() {
+                return 'female';
+            }
+        }
+
+        let human = new Female(62, 'Proger');
+        console.log(human);
+        human.sex = 'female';
+        console.log(human.sex);
+        human.changeAge();
+        console.log(human);
+    </script>
+</body>
+
+</html>
