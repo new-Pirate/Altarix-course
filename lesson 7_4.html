@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Task</title>
+    <style></style>
+</head>
+
+<body>
+    <script>
+        const numberArray = [4, 8, 15, 16, 23, 42];
+        function addNumber(numberArray, option) {
+            let set = new Set();
+            for(let i of numberArray){
+                if(option === 'четное' && i % 2 === 0){
+                    set.add(i);
+                }else if(option === 'нечетнное' && i % 2 !== 0){
+                    set.add(i);
+                }else if(option === 'все подряд') {
+                    set.add(i);
+                }
+            }
+            console.log(set);
+        }
+        
+        addNumber(numberArray, 'четное');
+    </script>
+</body>
+
+</html>
