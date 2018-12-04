@@ -3,61 +3,41 @@ import '../styles/App.css';
 import Header from './Header.jsx';
 import Chatroom from './Chatroom.jsx';
 import MessageForm from './MessageForm.jsx';
+import { db } from './firebase.js';
 
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      messages: [
-        {
-          id: Date.now() - 1,
-          name: "Incognito",
-          text: "Привет",
-          isOutgoing: false,
-        },
-
-        {
-          id: Date.now() - 2,
-          name: "Incognito",
-          text: "Как дела с JavaScript?",
-          isOutgoing: false,
-        },
-
-        {
-          id: Date.now() - 3,
-          name: "Alex",
-          text: "(((",
-          isOutgoing: true,
-        },
-
-        {
-          id: Date.now() - 4,
-          name: "Alex",
-          text: "Так же как и с React (((",
-          isOutgoing: true,
-        }
-      ]
+      messages: []
     }
   }
 
+  componentDidMount() {
+    const messagesRef = db.ref('messages');
+    messagesRef.on('value', (snapshot) => {
+      this.setState({
+        messages: Object.values(snapshot.val())
+      });
+    });
+  }
+
   sendMessage = (e) => {
-    this.setState({
-      messages: this.state.messages.concat(
-        {
-          id: Date.now(),
-          name: "Alex",
-          text: <p>{e}</p>,
-          isOutgoing: true,
-        }
-      )
-    })
+    const now = Date.now();
+    const message = {
+      id: now,
+      name: "Alex Vin",
+      text: e,
+      outGoingMess: true,
+    };
+    db.ref(`/messages/${now}`).set(message);
   }
 
   render() {
     return (
       <div className="App">
-        <Header userName="Incognito" />
+        <Header chatName="Incognito" />
         <Chatroom messages={this.state.messages} />
         <MessageForm sendMessage={this.sendMessage} />
       </div>

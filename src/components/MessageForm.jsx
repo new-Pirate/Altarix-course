@@ -12,13 +12,13 @@ class MessageForm extends Component {
         e.preventDefault();
         this.props.sendMessage(this.state.content);
         this.setState({
-            content: ''
+            content: '',
         })
     }
 
     onMessageChange = (e) => {
         this.setState({
-            content: e.target.value
+            content: e.target.value,
         })
     }
 
