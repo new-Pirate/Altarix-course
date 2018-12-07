@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import UserMessage from './UserMessage.jsx';
-import * as ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom';
 
 class Chatroom extends Component {
     componentDidUpdate() {

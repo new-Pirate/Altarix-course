@@ -23,12 +23,12 @@ class App extends Component {
     });
   }
 
-  sendMessage = (e) => {
+  sendMessage = (text) => {
     const now = Date.now();
     const message = {
       id: now,
       name: "Alex Vin",
-      text: e,
+      text: text,
       outGoingMess: true,
     };
     db.ref(`/messages/${now}`).set(message);
