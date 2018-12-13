@@ -1,0 +1,147 @@
+/*Reset Styles*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+ol, ul {
+	list-style: none;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+body {
+	line-height: 1;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* App */
+
+.App {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100%;
+}
+
+/* Header */
+
+.header {
+    margin: 0 auto;
+    width: 80%;
+    height: 80px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    font-size: 40px;
+    background: #1F2936;
+    color: #007ACC;
+}
+
+/* Chatroom */
+
+.chatroom {
+    margin: 0 auto;
+    padding: 20px;
+    width: 80%;
+    height: 600px;
+    background: #0E1621;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+}
+
+.list {
+    list-style-type: none;
+}
+
+.user {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.mySelf {
+    justify-content: flex-end;
+}
+
+.mySelf .userInfo {
+    order: 1;
+}
+
+.userInfo {
+    text-align: center;
+    width: 80px;
+    font-size: 18px;
+}
+
+.userMessage {
+    background: #2B5278;
+    padding: 6px 12px;
+    border-radius: 8px;
+    max-width: 600px;
+    font-size: 18px;
+    word-wrap: break-word;
+}
+
+/* MessageForm */
+
+.messageForm {
+    margin: 0 auto;
+    width: 80%;
+    height: 80px;
+    padding: 20px;
+    background: #1F2936;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.messageFormArea {
+    width: 80%;
+    height: 70px;
+    resize: none;
+    background: #17212B;
+    border: none;
+    font-size: 18px;
+    color: #6BBFFF;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.messageFormButton {
+    width: 60px;
+    height: 50px;
+    background: #5288C1;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    color: #fff;
+}
